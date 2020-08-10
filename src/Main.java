@@ -1,44 +1,35 @@
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Dimension;
 
-public class Main {
-    public static void main(String[] args) throws Exception {
-        Main window = new Main();
-        //window.run();
-    }
+public class Main extends JFrame implements Runnable {
 
-    public class Canvas extends JPanel {
-        public Canvas(){
-            setPreferredSize(new Dimension(720,720));
+    private class Canvas extends JPanel{
+
+        Grid grid;
+
+        public Canvas() {
+            setPreferredSize(new Dimension(720, 720));
+            grid = new Grid();
         }
 
         @Override
-        public void paint(Graphics g){
-            for(int i =10; i<710; i+=35){
-                for(int j=10; j<710; j+=35){
-                    g.setColor(Color.WHITE);
-                    g.fillRect(j, 10, 35, 35);
-                    g.setColor(Color.BLACK);
-                    g.drawRect(i, j, 35, 35);
-                }
-            }
+        public void paint(final Graphics g) {
+            grid.paint(g);
         }
     }
 
-    public Main(){
+    public static void main(String[] args) {
+        Main window = new Main();
+        window.run();
+    }
+
+    public Main() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Canvas canvas = new Canvas();
-        this.setContentPane(canvas);
+        this.setContentPane(new Canvas());
         this.pack();
-        this.setVisible(true);  
-    }
-
-    public void grid(){
-        
-    }
-
-    public void cell(){
-
+        this.setVisible(true);
     }
 
     
