@@ -3,9 +3,9 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Dimension;
 
-public class Main extends JFrame implements Runnable {
+public class Main extends JFrame{
 
-    private class Canvas extends JPanel{
+    private class Canvas extends JPanel implements Runnable{
 
         Grid grid;
 
@@ -16,13 +16,13 @@ public class Main extends JFrame implements Runnable {
 
         @Override
         public void paint(final Graphics g) {
-            grid.paint(g);
+            grid.paint(g, null);
         }
     }
 
     public static void main(String[] args) {
         Main window = new Main();
-        window.run();
+        ((Runnable) window).run();
     }
 
     public Main() {
